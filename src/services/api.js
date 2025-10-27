@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_URL = 'https://portal-freguesias-freguesia-api.3isjct.easypanel.host/api';
+// ✅ CORRIGIDO: Usar variável de ambiente VITE_API_URL
+const API_URL = import.meta.env.VITE_API_URL || 'https://portal-freguesias-freguesia-api.3isjct.easypanel.host/api';
+
+console.log('🔧 Frontend API URL:', API_URL);
 
 // Criar instância do axios
 const api = axios.create({
