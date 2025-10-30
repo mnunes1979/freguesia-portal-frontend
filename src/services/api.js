@@ -104,3 +104,39 @@ export const adminService = {
 };
 
 export default api;
+
+
+// === Multipart helpers for news & incidents (added) ===
+export const newsService = {
+  async create(data, files=[]) {
+    const form = new FormData();
+    form.append('data', JSON.stringify(data));
+    (files||[]).forEach(f=>form.append('images', f));
+    const res = await api.post('/api/news', form, { headers:{ 'Content-Type':'multipart/form-data' }});
+    return res.data;
+  },
+  async update(id, data, files=[]) {
+    const form = new FormData();
+    form.append('data', JSON.stringify(data));
+    (files||[]).forEach(f=>form.append('images', f));
+    const res = await api.put(`/api/news/${id}`, form, { headers:{ 'Content-Type':'multipart/form-data' }});
+    return res.data;
+  }
+};
+
+export const incidentsService = {
+  async create(data, files=[]) {
+    const form = new FormData();
+    form.append('data', JSON.stringify(data));
+    (files||[]).forEach(f=>form.append('images', f));
+    const res = await api.post('/api/incidents', form, { headers:{ 'Content-Type':'multipart/form-data' }});
+    return res.data;
+  },
+  async update(id, data, files=[]) {
+    const form = new FormData();
+    form.append('data', JSON.stringify(data));
+    (files||[]).forEach(f=>form.append('images', f));
+    const res = await api.put(`/api/incidents/${id}`, form, { headers:{ 'Content-Type':'multipart/form-data' }});
+    return res.data;
+  }
+};
